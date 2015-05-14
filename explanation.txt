@@ -12,3 +12,11 @@ How it was better to resolve the conflict?
 Github suggested to merge master into f3, resolve the conflict and after then the Pull Request could be merged automatically via fast-forward. BUT THIS ADDED f2-1 commit (introduced by f2 branch), what is bad. f2 is deferred and might be rejected at all while f3 should be merged into prepro right now (after testing on master)!
 
 
+  My only suggested flow is this:
+    All that has happened to f3 brach is okay. You have to resolve conflicts between f3 and master before you make a pull request from f3 to master. And you will have to resolve conflicts between f3 and prepro later, before you make a pull request from f3 to prepro. Unfortunately often this will force you to resolve the same conflicts twice, but I have no idea for how to avoid this (conficts with master and with prepro in common case will be different).
+
+    There is no better way to resolve conflicts with master than to make either "merge master" or "rebase master" on f3 branch. I suggest "merge master --no-ff", because in this case exactly 1 commit ("Merge branch 'master' into f3") will be added onto tip of f3 branch. It'll be easy to discard this commit later.
+
+    When you are ready to make Pull Request for merge f3 branch into prepro, checkout to the commit before "Merge branch 'master' into f3" ("git checkout HEAD^1" and create "f3-pure" branch here, BTW you could do thi in advance, before resolving conflicts between f3 and master).
+    Now make a Pull Request from "f3-pure" to prepro.
+
