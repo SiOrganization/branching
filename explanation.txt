@@ -1,0 +1,14 @@
+1) f1 branch had been created based on prepro and having 2 commits was merged into master LOCALLY.
+There were no problems.
+
+2) f2 branch had been created based on prepro and having 1 commit was merged into master VIA Pull Request on github.
+It was confuding that "Merge branch 'f1' into prepro" commit appeared in f2 branch (came from prepro) and was shown in "Commits" tab of the Pull Request. However "Files Changed" tab contained only true f2 changes, not changes from "Merge branch 'f1' into prepro" commit.
+So there were no problems of merging into master.
+
+f2 branch was intentionally not merged into prepro. (Suppose f2 branch was considered incorrect and deferred...)
+
+3) f3 branch had been created based on prepro and having 1 commit was requsted for merge into master VIA Pull Request on github. There was a conflict (intentionally introduced).
+How it was better to resolve the conflict?
+Github suggested to merge master into f3, resolve the conflict and after then the Pull Request could be merged automatically via fast-forward. BUT THIS ADDED f2-1 commit (introduced by f2 branch), what is bad. f2 is deferred and might be rejected at all while f3 should be merged into prepro right now (after testing on master)!
+
+
